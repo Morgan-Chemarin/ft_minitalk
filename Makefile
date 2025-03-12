@@ -17,7 +17,7 @@ PRINTF_INC = -I${PRINTF_DIR}
 
 all: ${NAME_SERVER} ${NAME_CLIENT}
 
-src/%.o: src/%.c
+src/%.o: src/%.c 
 	${CC} ${CFLAGS} -c $< -o $@
 
 ${NAME_SERVER}: ${OBJS_SERVER} ${PRINTF_LIB}
