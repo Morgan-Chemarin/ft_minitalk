@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:46:26 by dev               #+#    #+#             */
-/*   Updated: 2025/03/12 16:45:19 by mchemari         ###   ########.fr       */
+/*   Updated: 2025/03/14 00:52:39 by dev              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-volatile sig_atomic_t	g_signal_received = 0;
+int	g_signal_received = 0;
 
-void	ack_handler(int signal)
+void	receive_handler(int signal)
 {
-	(void)signal;
 	g_signal_received = 1;
 }
 
@@ -49,7 +48,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	pid = ft_atoi(av[1]);
-	signal(SIGUSR1, ack_handler);
+	signal(SIGUSR1, receive_handler);
 	i = 0;
 	while (av[2][i] != '\0')
 	{

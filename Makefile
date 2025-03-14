@@ -1,36 +1,47 @@
-NAME_SERVER = server
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dev <dev@student.42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/14 00:41:49 by dev               #+#    #+#              #
+#    Updated: 2025/03/14 00:41:51 by dev              ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME_CLIENT = client
-
-SRCS_CLIENT = src/client.c src/utils.c
-SRCS_SERVER = src/server.c src/utils.c
-
-OBJS_CLIENT = ${SRCS_CLIENT:.c=.o}
-OBJS_SERVER = ${SRCS_SERVER:.c=.o}
+NAME_SERVER = server
 
 CC = gcc
-RM = rm -f
-CFLAGS = -Wall -Wextra -Werror -Iinclude
+CFLAGS = -Werror -Wextra -Werror
 
-PRINTF_DIR = ft_printf
-PRINTF_LIB = ${PRINTF_DIR}/libftprintf.a
-PRINTF_INC = -I${PRINTF_DIR}
+SRC_CLIENT = src/client.c src/utils.c ft_printf/ft_printf.c \
+			ft_printf/ft_putchar_pf.c ft_printf/ft_putnbr_pf.c ft_printf/ft_putstr_pf.c \
+			ft_printf/ft_puthex_pf.c
+SRC_SERVER = src/server.c src/utils.c ft_printf/ft_printf.c \
+			ft_printf/ft_putchar_pf.c ft_printf/ft_putnbr_pf.c ft_printf/ft_putstr_pf.c \
+			ft_printf/ft_puthex_pf.c
 
-all: ${NAME_SERVER} ${NAME_CLIENT}
+OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
+OBJ_SERVER = $(SRC_SERVER:.c=.o)
 
-src/%.o: src/%.c 
-	${CC} ${CFLAGS} -c $< -o $@
+all: $(NAME_CLIENT) $(NAME_SERVER)
 
-${NAME_SERVER}: ${OBJS_SERVER} ${PRINTF_LIB}
-	${CC} ${CFLAGS} ${PRINTF_INC} ${OBJS_SERVER} -L${PRINTF_DIR} -lftprintf -o ${NAME_SERVER}
+$(NAME_CLIENT): $(OBJ_CLIENT)
+	$(CC) $(CFLAGS) -o $(NAME_CLIENT) $(OBJ_CLIENT)
 
-${NAME_CLIENT}: ${OBJS_CLIENT} ${PRINTF_LIB}
-	${CC} ${CFLAGS} ${PRINTF_INC} ${OBJS_CLIENT} -L${PRINTF_DIR} -lftprintf -o ${NAME_CLIENT}
+$(NAME_SERVER): $(OBJ_SERVER)
+	$(CC) $(CFLAGS) -o $(NAME_SERVER) $(OBJ_SERVER)
+
+%.o: %.c includes/minitalk.h ft_printf/ft_printf.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	${RM} ${OBJS_CLIENT} ${OBJS_SERVER}
-	
+	rm -f $(OBJ_CLIENT) $(OBJ_SERVER)
+
 fclean: clean
-	${RM} ${NAME_CLIENT} ${NAME_SERVER}
+	rm -f $(NAME_CLIENT) $(NAME_SERVER)
 
 re: fclean all
 
