@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:46:30 by dev               #+#    #+#             */
-/*   Updated: 2025/03/14 00:57:24 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/14 16:06:55 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*stock_message(char *message, int ascii)
 {
-	int			i;
-	char		*temp;
+	int		i;
+	char	*temp;
 
 	i = 0;
 	temp = malloc(sizeof(char) * (ft_strlen(message) + 2));
@@ -27,22 +27,28 @@ char	*stock_message(char *message, int ascii)
 		i++;
 	}
 	temp[i] = ascii;
-	i++;
-	temp[i] = '\0';
+	temp[i + 1] = '\0';
 	free(message);
 	return (temp);
 }
 
 void	update_buffer(char **buffer, char received_char)
 {
+	char	*temp;
+
 	if (received_char == '\n')
 	{
 		ft_printf("%s\n", *buffer);
 		free(*buffer);
-		*buffer = ft_strdup("");
+		*buffer = NULL;
 	}
 	else
-		*buffer = stock_message(*buffer, received_char);
+	{
+		temp = stock_message(*buffer, received_char);
+		if (!temp)
+			return ;
+		*buffer = temp;
+	}
 }
 
 void	handler(int signal, siginfo_t *info, void *context)

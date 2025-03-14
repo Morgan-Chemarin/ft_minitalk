@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 15:46:26 by dev               #+#    #+#             */
-/*   Updated: 2025/03/14 00:52:39 by dev              ###   ########.fr       */
+/*   Updated: 2025/03/14 15:39:35 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	pid = ft_atoi(av[1]);
+	if (pid == -1)
+		return (1);
 	signal(SIGUSR1, receive_handler);
 	i = 0;
 	while (av[2][i] != '\0')
