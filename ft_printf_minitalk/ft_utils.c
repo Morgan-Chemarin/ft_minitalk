@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dev <dev@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 11:43:21 by dev               #+#    #+#             */
-/*   Updated: 2025/03/14 01:34:26 by dev              ###   ########.fr       */
+/*   Created: 2024/11/20 10:12:59 by mchemari          #+#    #+#             */
+/*   Updated: 2024/11/20 10:16:11 by mchemari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "ft_printf.h"
 
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "../ft_printf_minitalk/ft_printf.h"
+int	ft_strlen(char *s)
+{
+	int	i;
 
-int		ft_atoi(const char *nptr);
-int		ft_strlen(char *str);
-char	*ft_strdup(char *source);
-
-#endif
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
