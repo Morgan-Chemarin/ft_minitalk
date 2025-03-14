@@ -6,7 +6,7 @@
 #    By: mchemari <mchemari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 00:41:49 by dev               #+#    #+#              #
-#    Updated: 2025/03/14 15:55:11 by mchemari         ###   ########.fr        #
+#    Updated: 2025/03/14 16:16:19 by mchemari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_CLIENT = client
 NAME_SERVER = server
 
 CC = gcc
-CFLAGS = -Werror -Wextra -Werror -g3
+CFLAGS = -Werror -Wextra -Werror
 
 SRC_CLIENT = src/client.c src/utils.c ft_printf_minitalk/ft_printf.c \
 			ft_printf_minitalk/ft_putchar_pf.c ft_printf_minitalk/ft_putnbr_pf.c ft_printf_minitalk/ft_putstr_pf.c \
